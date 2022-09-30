@@ -19,3 +19,22 @@ html {
   font-size: 30px;
   padding-top:10px; /* Increase font size */
 }
+#chatWindow{
+  position: fixed;
+  width: 400px;
+  height: 600px;
+  background-color: #B6D0E2;
+  bottom: 150px;
+  right: 120px;
+  z-index: 10000;
+  border-radius: 30px;
+  text-align: center;
+  display: none;
+}
+#questionBox{
+  height: 40px;
+  width: 80%;
+  margin-top: 10px;
+  font-size: 18px;
+  text-align: center;
+}

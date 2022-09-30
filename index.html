@@ -35,7 +35,10 @@
 </div>
     </div>
     <button onclick="topFunction()" id="topButton" title="Go to top">^</button>
-    <button onclick="alert('test');" id="chatButton" title="Go to top">C</button>
+    <button onclick="toggleChatWindow()" id="chatButton" title="Go to top">C</button>
+    <div id="chatWindow">
+       <input type="text" id="questionBox" onkeyup="chatTyping()" placeholder="Chatbot">
+    </div>
 <div class="container">
 
 
