@@ -1,3 +1,19 @@
+class question {
+  constructor(text, tags, hasPrev, prevQuestion, hasFallow, fallowQuestion, response) {
+    this.text = text;
+    this.tags = tags;
+    this.hasPrev = hasPrev;
+    this.prevQuestion = prevQuestion;
+    this.hasFallow = hasFallow;
+    this.fallowQuestion = fallowQuestion;
+    this.response = response;
+  }
+  click(){
+    
+  }
+}
+
+
 
 function toggleChatWindow(){
   $( "#chatWindow" ).slideToggle();
