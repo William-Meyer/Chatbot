@@ -1,0 +1,22 @@
+.fadeInID{
+  opacity: 0;
+  align-items: center;
+}
+
+
+.fadeInClass{
+  animation-duration: 1s;
+  animation-name: fadeIn;
+  opacity: 1;
+}
+@keyframes fadeIn {
+  from {
+      transform: translateY(10vh);
+      opacity: 0;
+  }
+
+  to {
+      transform: none;
+      opacity: 1;
+  }
+}

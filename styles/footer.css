@@ -1,0 +1,78 @@
+footer{
+  align-items: center;
+  text-align: center;
+  font-family: 'works-sans', sans-serif;
+}
+footer img{
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-bottom: -5px;
+}
+footer ul {
+  margin-top: 0;
+  font-family: 'works-sans', sans-serif;
+  color: white;
+  list-style: none;
+  font-size: 1.3vw;
+  padding-top: 5% !important;
+}
+footer h3 {
+  font-weight: 500;
+  color: white;
+  text-align: left;
+}
+footer li{
+  color: white;
+  text-align: left;
+  font-size: 1.1vw;
+  margin-top: 2%;
+}
+footer a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+footer a h3{
+  font-weight: 600;
+}
+footer h3{
+  font-size: 1.4vw;
+  margin-bottom: 2vw;
+}
+.siteMap{
+  position: absolute;
+  margin-top: -20%;
+  z-index: 100;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100%;
+}
+.footerCard{
+  height: 10vw;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.footerLogo{
+  float:left;
+  height: 5vw;
+  margin-top: 2vw;
+  width: auto;
+  margin-left: 1em;
+}
+
+#footerText{
+  font-family: 'works-sans',sans-serif;
+  color: white;
+  margin-top: 2vw;
+  float: right;
+  line-height: 150%;
+  margin-right: 2em;
+  font-size: 1.5vw;
+}
+#footerText a{
+  text-decoration: underline;
+}

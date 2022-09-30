@@ -1,0 +1,29 @@
+.grid {
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 0;
+}
+.gridContainer{
+  margin-top: 15%;
+  text-align: center;
+}
+.right{order: 1;}
+
+.tripGrid{
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 0;
+}
+
+@media (min-width: 1000px) {
+    .left{margin-left: -5rem;}
+    .right{margin-right: -5rem; order: -1;}
+    .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media(min-width: 1200px){
+  .tripGrid{ grid-template-columns: repeat(3, 1fr); }
+}
