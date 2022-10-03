@@ -1,5 +1,6 @@
 class question {
-  constructor(text, tags, hasPrev, prevQuestion, hasFallow, fallowQuestion, response) {
+  //         string list  bool        list          bool        list             string     string
+  constructor(text, tags, hasPrev, prevQuestionID, hasFallow, fallowQuestionID, response, id) {
     this.text = text;
     this.tags = tags;
     this.hasPrev = hasPrev;
@@ -9,10 +10,39 @@ class question {
     this.response = response;
   }
   click(){
-    
+    if(hasPrev){
+      //for through prevquestions
+      //search userQuestions for prevQuestionID
+    }
+    else{
+      //print resposne
+    }
+    if(hasFallow){
+      //search userQuestions for fallowQuestionID
+    }
   }
 }
-
+class userQuestion{
+  constructor(text, id, orginalID,isChoice, hasFallow, fallowQuestionID, hasPrev, prevQuestionID){
+    this.text = text;
+    this.id = id;
+    this.orginalID = orginalID;
+    this.isChoice = isChoice;
+    this.hasFallow = hasFallow;
+    this.hasPrev = hasPrev;
+    this.prevQuestionID = prevQuestionID;
+  }
+  getResponse(){
+    //function to change question text
+    if(isChoice){
+      //display choices as buttons
+    }
+    else{
+      //text box answer
+    }
+  }
+}
+//create userQuestions, create asking function
 
 
 function toggleChatWindow(){
