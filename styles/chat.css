@@ -32,11 +32,12 @@ html {
   display: none;
 }
 #questionBox{
+  position: fixed;
+  bottom: 5;
   height: 40px;
   width: 70%;
   font-size: 18px;
   text-align: center;
-  padding-top: 0;
 }
 #send{
   width: 40px;
