@@ -9,16 +9,29 @@ class question {
     this.fallowQuestion = fallowQuestion;
     this.response = response;
   }
+  //iterates through prev questions to ask them then responds then ask fallow up questions
   click(){
+    changeQuestion(text);
     if(hasPrev){
-      //for through prevquestions
-      //search userQuestions for prevQuestionID
+      for (let i = 0; i < prevQuestionID.length; i++) {
+            for(let j = 0; j<userQuestions.length; i++){
+              if(prevQuestionID[j] == userQuestions[i].getID()){
+                userQuestion[j].getResponse();
+              }
+          }
+      }
     }
     else{
-      //print resposne
+      print(response)
     }
     if(hasFallow){
-      //search userQuestions for fallowQuestionID
+      for (let i = 0; i < fallowQuestionID.length; i++) {
+            for(let j = 0; j<userQuestions.length; i++){
+              if(fallowQuestionID[j] == userQuestions[i].getID()){
+                userQuestion[j].getResponse();
+              }
+          }
+      }
     }
   }
 }
@@ -32,8 +45,11 @@ class userQuestion{
     this.hasPrev = hasPrev;
     this.prevQuestionID = prevQuestionID;
   }
+  getID(){
+    return id;
+  }
   getResponse(){
-    //function to change question text
+    changeQuestion(text);//need implementation
     if(isChoice){
       //display choices as buttons
     }
