@@ -32,15 +32,30 @@ html {
   display: none;
 }
 #questionBox{
-  position: fixed;
-  bottom: 5;
+  position:absolute;
+  bottom:10px;
   height: 40px;
   width: 70%;
   font-size: 18px;
   text-align: center;
+  left: 30px;
+  border-radius: 10px;
 }
 #send{
+  position:absolute;
+  bottom:12px;
+  right: 20px;
   width: 40px;
   height: 40px;
   border-radius: 40px;
+  background-color: white;
+}
+#send:hover{
+  background-color: #F2F3F5;
+  cursor: pointer;
+}
+#sendImg{
+  margin-left: -3px;
+  height: 25px;
+  width: 25px;
 }
