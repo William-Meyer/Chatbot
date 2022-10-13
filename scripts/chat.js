@@ -51,7 +51,7 @@ class userQuestion{
   getResponse(){
     changeQuestion(text);//need implementation
     if(isChoice){
-      //display choices as buttons
+      displayChoices()//needs implementation
     }
     else{
       //text box answer
