@@ -1,5 +1,5 @@
 class question {
-  //         string list  bool        list          bool        list             string     string
+  //     html string list  bool        list          bool        list             string     string
   constructor(text, tags, hasPrev, prevQuestionID, hasFallow, fallowQuestionID, response, id) {
     this.text = text;
     this.tags = tags;
@@ -15,7 +15,8 @@ class question {
     if(hasPrev){
       for (let i = 0; i < prevQuestionID.length; i++) {
             for(let j = 0; j<userQuestions.length; i++){
-              if(prevQuestionID[j] == userQuestions[i].getID()){
+              if(prevQuestionID[i] == userQuestions[j].getID()){
+                if(!(userQuestion[j].hasResponse()))
                 userQuestion[j].getResponse();
               }
           }
@@ -36,7 +37,8 @@ class question {
   }
 }
 class userQuestion{
-  constructor(text, id, orginalID,isChoice, hasFallow, fallowQuestionID, hasPrev, prevQuestionID){
+  hasResponse = false;
+  constructor(text, id, orginalID,isChoice,choices, hasFallow, fallowQuestionID, hasPrev, prevQuestionID){
     this.text = text;
     this.id = id;
     this.orginalID = orginalID;
@@ -48,18 +50,31 @@ class userQuestion{
   getID(){
     return id;
   }
+  hasResponse(){
+    return hasResponse;
+  }
   getResponse(){
-    changeQuestion(text);//need implementation
+    changeQuestion(text);
     if(isChoice){
-      displayChoices()//needs implementation
+      response = displayChoices();
     }
     else{
-      //text box answer
+      while(resposne == ""){
+      document.getElementById('send').addEventListener('click', () => {
+        response = document.getElementById('questionBox').value;
+      });
     }
+    }
+    hasResponse = true;
+  }
+  displayChoices(){
+    //needs implementation
   }
 }
 //create userQuestions, create asking function
-
+function changeQuestion(text){
+  document.getElementById("question").innerHTML = text;
+}
 
 function toggleChatWindow(){
   $( "#chatWindow" ).slideToggle();
