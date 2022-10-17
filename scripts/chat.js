@@ -68,8 +68,10 @@ class userQuestion{
     hasResponse = true;
   }
   displayChoices(){
-    //needs implementation
+    for (let i = 0; i < choices.length; i++) {
+    document.getElementById('options').innerHTML = '<button type="button" name="button" class = "option">' + choices[i] + '</button>';
   }
+}
 }
 //create userQuestions, create asking function
 function changeQuestion(text){
@@ -87,4 +89,7 @@ function chatTyping(){
   if (words.length > 1){
     keyword = words[words.length-1];
   }
+}
+while(true){
+  
 }

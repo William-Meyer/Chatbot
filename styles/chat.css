@@ -68,3 +68,16 @@ html {
   font-size: 24px;
   font-family: sans-serif;
 }
+.option{
+  width: 60%;
+  height: 80px;;
+  margin-top: 5%;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.option:hover{
+  background-color: red;
+}
+#options{
+  margin-top: 20%;
+}
