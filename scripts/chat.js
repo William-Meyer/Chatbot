@@ -1,3 +1,9 @@
+
+
+
+
+
+
 class question {
   //     html string list  bool        list          bool        list             string     string
   constructor(text, tags, hasPrev, prevQuestionID, hasFallow, fallowQuestionID, response, id) {
@@ -10,6 +16,7 @@ class question {
     this.response = response;
   }
   //iterates through prev questions to ask them then responds then ask fallow up questions
+  //needs to set user question to current question
   click(){
     changeQuestion(text);
     if(hasPrev){
@@ -17,7 +24,8 @@ class question {
             for(let j = 0; j<userQuestions.length; i++){
               if(prevQuestionID[i] == userQuestions[j].getID()){
                 if(!(userQuestion[j].hasResponse()))
-                userQuestion[j].getResponse();
+                currentQuestion = userQuestion[j]
+                userQuestion[j].setUpQuestion();
               }
           }
       }
@@ -29,7 +37,8 @@ class question {
       for (let i = 0; i < fallowQuestionID.length; i++) {
             for(let j = 0; j<userQuestions.length; i++){
               if(fallowQuestionID[j] == userQuestions[i].getID()){
-                userQuestion[j].getResponse();
+                currentQuestion = userQuestion[j]
+                userQuestion[j].setUpQuestion();
               }
           }
       }
@@ -46,6 +55,8 @@ class userQuestion{
     this.hasFallow = hasFallow;
     this.hasPrev = hasPrev;
     this.prevQuestionID = prevQuestionID;
+    this.response = "";
+    this.hasResponse = false;
   }
   getID(){
     return id;
@@ -53,7 +64,13 @@ class userQuestion{
   hasResponse(){
     return hasResponse;
   }
-  getResponse(){
+  setUpQuestion(){
+    changeQuestion(text);
+    if(isChoice){
+      displayChoices();
+    }
+  }
+  getResponse(){//shouild be old leaving just in case
     changeQuestion(text);
     if(isChoice){
       response = displayChoices();
@@ -73,7 +90,7 @@ class userQuestion{
   }
 }
 }
-//create userQuestions, create asking function
+//basic fucntions
 function changeQuestion(text){
   document.getElementById("question").innerHTML = text;
 }
@@ -82,7 +99,16 @@ function toggleChatWindow(){
   $( "#chatWindow" ).slideToggle();
   stop();
 }
+//function on start use json to create questions and add them to teh list
+
+
+//controll flow of chat
+var currentQuestion;//current user question
+//question list
+
+//func on question click click function for class
 function chatTyping(){
+  //use keyword along with tags to search for questions and dispaly them as blocks
   input = document.getElementById('questionBox');
   text = input.value.toUpperCase();
   const words = text.split(" ");
@@ -90,6 +116,8 @@ function chatTyping(){
     keyword = words[words.length-1];
   }
 }
-while(true){
-  
+
+function sendClicked(){
+  //current question anaswer = interiror of answer box if there is a current question
 }
+//multiple answer on click set answer of current question to the block set current question to none
