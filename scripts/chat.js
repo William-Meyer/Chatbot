@@ -101,7 +101,7 @@ function toggleChatWindow(){
 }
 //function on start use json to create questions and add them to teh list
 
-var questionList = [new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),new question("Who is the CEO?", ["ceo","boss","creator","meyer",",name"], false, [],false,[],"CEO is William Meyer, assistant TO the CEO is Caden Watts","ceo")]
+var questionList = [new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),new question("Who is the CEO?", ["ceo","boss","creator","meyer"], false, [],false,[],"CEO is William Meyer, assistant TO the CEO is Caden Watts","ceo")]
 //controll flow of chat
 var currentQuestion;//current user question
 //question list
