@@ -10,9 +10,9 @@ class question {
     this.text = text;
     this.tags = tags;
     this.hasPrev = hasPrev;
-    this.prevQuestion = prevQuestion;
+    this.prevQuestionID = prevQuestionID;
     this.hasFallow = hasFallow;
-    this.fallowQuestion = fallowQuestion;
+    this.fallowQuestionID = fallowQuestionID;
     this.response = response;
   }
   //iterates through prev questions to ask them then responds then ask fallow up questions
@@ -101,19 +101,31 @@ function toggleChatWindow(){
 }
 //function on start use json to create questions and add them to teh list
 
-
+var questionList = [new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),new question("Who is the CEO?", ["ceo","boss","creator","meyer",",name"], false, [],false,[],"CEO is William Meyer, assistant TO the CEO is Caden Watts","ceo")]
 //controll flow of chat
 var currentQuestion;//current user question
 //question list
 
 //func on question click click function for class
 function chatTyping(){
+  var possibleQuestions = []
   //use keyword along with tags to search for questions and dispaly them as blocks
   input = document.getElementById('questionBox');
-  text = input.value.toUpperCase();
+  text = input.value.toLowerCase();
   const words = text.split(" ");
   if (words.length > 1){
     keyword = words[words.length-1];
+  }
+  if(words.length > 1){
+      for (let i = 0; i < questionList.length; i++) {
+        if(questionList[i].tags.includes(keyword)){
+          possibleQuestions.push(questionList[i]);
+        }
+      }
+  }
+  console.log("possible questions:")
+  for (let i = 0; i < possibleQuestions.length; i++) {
+    console.log(possibleQuestions[i].response);
   }
 }
 
