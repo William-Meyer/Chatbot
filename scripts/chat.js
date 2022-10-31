@@ -108,6 +108,7 @@ var currentQuestion;//current user question
 
 //func on question click click function for class
 function chatTyping(){
+  let keyword = "";
   optionshtml = "";
   var possibleQuestions = [];
   //use keyword along with tags to search for questions and dispaly them as blocks
@@ -118,13 +119,20 @@ function chatTyping(){
   words = words.filter(function checkSpaces(words) {
     return  words != "";
   })
-  console.log(words);
+
   if (words.length > 1 ){
     let theWord = words[words.length-1];
-    keyword = theWord.filter(function filterPunc(word){
-      return word[-1] !="." || word[-1] !="?" || word[-1] !="!";
-    });
+    theWord = theWord.split("");
+    console.log(theWord[theWord.length-1]);
+    theWord = theWord.filter(function filterPunc(word){
+      index = word.length -1
+      return word[index] != '?' || word[index] != '.';
+    })
+    for(let i = 0; i < theWord.length; i++){
+      keyword += theWord[i];
+    }
   }
+  console.log(keyword);
   if(words.length > 1){
       for (let i = 0; i < questionList.length; i++) {
         if(questionList[i].tags.includes(keyword)){
