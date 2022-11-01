@@ -15,6 +15,13 @@ class question {
     this.fallowQuestionID = fallowQuestionID;
     this.response = response;
   }
+  getTags(){
+    theList = []
+    for(let i = 0; i < tags.length; i++){
+      theList.push(tags[i]);
+    }
+    return theList;
+  }
   //iterates through prev questions to ask them then responds then ask fallow up questions
   //needs to set user question to current question
   click(){
@@ -101,7 +108,7 @@ function toggleChatWindow(){
 }
 //function on start use json to create questions and add them to teh list
 
-var questionList = [new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),new question("Who is the CEO?", ["ceo","boss","creator","meyer", "name"], false, [],false,[],"CEO is William Meyer, assistant TO the CEO is Caden Watts","ceo")]
+var questionList = [new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),new question("Who is the CEO?", ["ceo","boss","creator","meyer", "name"], false, [],false,[],"CEO is William Meyer, assistant TO the CEO is Caden Watts","ceo")]
 //controll flow of chat
 var currentQuestion;//current user question
 //question list
@@ -123,10 +130,11 @@ function chatTyping(){
   if (words.length > 1 ){
     let theWord = words[words.length-1];
     theWord = theWord.split("");
-    console.log(theWord[theWord.length-1]);
     theWord = theWord.filter(function filterPunc(word){
       index = word.length -1
-      return word[index] != '?' || word[index] != '.';
+      theBool = (word[index] != '?' || word[index] != '.')
+      console.log(word[index] + '---' + theBool);
+      return theBool;
     })
     for(let i = 0; i < theWord.length; i++){
       keyword += theWord[i];
@@ -134,9 +142,14 @@ function chatTyping(){
   }
   console.log(keyword);
   if(words.length > 1){
+      keywordLength = keyword.length;
       for (let i = 0; i < questionList.length; i++) {
-        if(questionList[i].tags.includes(keyword)){
-          possibleQuestions.push(questionList[i]);
+        orginalLength = possibleQuestions.length;
+        for(let j = 0; j < questionList[i].tags.length; j++){
+          if(questionList[i].tags[j].substring(0, keywordLength) == keyword && possibleQuestions.length == orginalLength){
+            possibleQuestions.push(questionList[i]);
+            break;
+          }
         }
       }
   }
