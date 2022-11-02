@@ -110,12 +110,12 @@ function toggleChatWindow(){
 
 var questionList = [new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),new question("Who is the CEO?", ["ceo","boss","creator","meyer", "name"], false, [],false,[],"CEO is William Meyer, assistant TO the CEO is Caden Watts","ceo")]
 //controll flow of chat
-var currentQuestion = null;//current user question
+var currentQuestion = 'null';//current user question
 //question list
 
 //func on question click click function for class
 function chatTyping(){
-  if (currentQuestion = null){
+  if (currentQuestion == 'null'){
   let keyword = "";
   optionshtml = "";
   var possibleQuestions = [];
@@ -162,6 +162,9 @@ function chatTyping(){
 }
 
 function questionClick(button){
+  document.getElementById("questionBox").value = '';
+  document.getElementById("questionBox").focus();
+document.getElementById("questionBox").select();
   text = button.getAttribute("data-text");
   for(let i = 0; i < questionList.length; i++){
     console.log(text + "---" + questionList[i].text);
@@ -169,9 +172,10 @@ function questionClick(button){
       currentQuestion = questionList[i];
       break;
     }
-
   }
-      alert(currentQuestion.text);
+  document.getElementById("options").innerHTML = '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>' + '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentQuestion.response + '</p></div>';
+  currentQuestion = "null";
+
   //current question anaswer = interiror of answer box if there is a current question
 }
 //multiple answer on click set answer of current question to the block set current question to none
