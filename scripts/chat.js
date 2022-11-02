@@ -110,11 +110,12 @@ function toggleChatWindow(){
 
 var questionList = [new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),new question("Who is the CEO?", ["ceo","boss","creator","meyer", "name"], false, [],false,[],"CEO is William Meyer, assistant TO the CEO is Caden Watts","ceo")]
 //controll flow of chat
-var currentQuestion;//current user question
+var currentQuestion = null;//current user question
 //question list
 
 //func on question click click function for class
 function chatTyping(){
+  if (currentQuestion = null){
   let keyword = "";
   optionshtml = "";
   var possibleQuestions = [];
@@ -132,7 +133,7 @@ function chatTyping(){
     theWord = theWord.split("");
     theWord = theWord.filter(function filterPunc(word){
       index = word.length -1
-      theBool = (word[index] != '?' || word[index] != '.')
+      theBool = (word[index] != '?') && (word[index] != '.')
       console.log(word[index] + '---' + theBool);
       return theBool;
     })
@@ -154,12 +155,23 @@ function chatTyping(){
       }
   }
   for (let i = 0; i < possibleQuestions.length; i++) {
-    optionshtml += '<button type="button" name="button" class = "option">'+possibleQuestions[i].text+'</button>';
+    optionshtml += '<button type="button" data-text = "' + possibleQuestions[i].text + '" name="button" onclick="questionClick(this)" class = "option">'+possibleQuestions[i].text+'</button>';
   }
   document.getElementById("options").innerHTML = optionshtml;
 }
+}
 
-function sendClicked(){
+function questionClick(button){
+  text = button.getAttribute("data-text");
+  for(let i = 0; i < questionList.length; i++){
+    console.log(text + "---" + questionList[i].text);
+    if(text == questionList[i].text){
+      currentQuestion = questionList[i];
+      break;
+    }
+
+  }
+      alert(currentQuestion.text);
   //current question anaswer = interiror of answer box if there is a current question
 }
 //multiple answer on click set answer of current question to the block set current question to none
