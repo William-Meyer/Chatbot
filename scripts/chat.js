@@ -1,9 +1,4 @@
 
-
-
-
-
-
 class question {
   //     html string list  bool        list          bool        list             string     string
   constructor(text, tags, hasPrev, prevQuestionID, hasFallow, fallowQuestionID, response, id) {
@@ -54,10 +49,9 @@ class question {
 }
 class userQuestion{
   hasResponse = false;
-  constructor(text, id, orginalID,isChoice,choices, hasFallow, fallowQuestionID, hasPrev, prevQuestionID){
+  constructor(text, id,isChoice,choices, hasFallow, fallowQuestionID, hasPrev, prevQuestionID){
     this.text = text;
     this.id = id;
-    this.orginalID = orginalID;
     this.isChoice = isChoice;
     this.hasFallow = hasFallow;
     this.hasPrev = hasPrev;
@@ -107,12 +101,18 @@ function toggleChatWindow(){
   stop();
 }
 //function on start use json to create questions and add them to teh list
-
-var questionList = [new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),new question("Who is the CEO?", ["ceo","boss","creator","meyer", "name"], false, [],false,[],"CEO is William Meyer, assistant TO the CEO is Caden Watts","ceo")]
+var userQuestion = [
+new userQuestion("What is your name?","chatterName", false, "", false, "" ),
+new userQuestion("What is your age?","chatterAge", false, "", false, "" ),
+new userQuestion("What is your email?","chatterEmail", false, "", false, "" )];
+var questionList = [new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),
+new question("Who is the CEO?", ["ceo","boss","creator","meyer", "name"], false, [],false,[],"CEO is William Meyer, assistant TO the CEO is Caden Watts","ceo"),
+new question("I want to apply for a job", ["job","apply","application","work","money","employee", "manager", "employer"], true, ["chatterName", "chatterAge"], true,["chatterEmail"],"Thankyou so much! If you provide your email we will get back to you as soon as possible","apply")]
 //controll flow of chat
 var currentQuestion = 'null';//current user question
 //question list
-
+var fallowIndex = 0
+var prevIndex = 0
 //func on question click click function for class
 function chatTyping(){
   if (currentQuestion == 'null'){
@@ -164,18 +164,27 @@ function chatTyping(){
 function questionClick(button){
   document.getElementById("questionBox").value = '';
   document.getElementById("questionBox").focus();
-document.getElementById("questionBox").select();
+  document.getElementById("questionBox").select();
   text = button.getAttribute("data-text");
   for(let i = 0; i < questionList.length; i++){
-    console.log(text + "---" + questionList[i].text);
     if(text == questionList[i].text){
       currentQuestion = questionList[i];
       break;
     }
   }
-  document.getElementById("options").innerHTML = '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>' + '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentQuestion.response + '</p></div>';
-  currentQuestion = "null";
+  document.getElementById("options").innerHTML = '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>'
+  if(currentQuestion.hasPrev){
+    for (let i = 0; i < currentQuestion.prevQuestionID.length; i++){
 
+    }
+  }
+  else if(currentQuestion.hasFallow){
+    document.getElementById("options").innerHTML = '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>' + '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentQuestion.response + '</p></div>';
+  }
+  else{
+    document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentQuestion.response + '</p></div>';
+  }
+  currentQuestion = 'null';
   //current question anaswer = interiror of answer box if there is a current question
 }
 //multiple answer on click set answer of current question to the block set current question to none
