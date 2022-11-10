@@ -175,7 +175,10 @@ function questionClick(button){
   document.getElementById("options").innerHTML = '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>'
   if(currentQuestion.hasPrev){
     for (let i = 0; i < currentQuestion.prevQuestionID.length; i++){
-
+      theID = currentQuestion.prevQuestionID[i]
+      for (let j = 0; j < userQuestion.length; j++){
+        if()
+      }
     }
   }
   else if(currentQuestion.hasFallow){
