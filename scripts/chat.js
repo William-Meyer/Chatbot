@@ -101,7 +101,7 @@ function toggleChatWindow(){
   stop();
 }
 //function on start use json to create questions and add them to teh list
-var userQuestion = [
+var userQuestions = [
 new userQuestion("What is your name?","chatterName", false, "", false, "" ),
 new userQuestion("What is your age?","chatterAge", false, "", false, "" ),
 new userQuestion("What is your email?","chatterEmail", false, "", false, "" )];
@@ -110,6 +110,7 @@ new question("Who is the CEO?", ["ceo","boss","creator","meyer", "name"], false,
 new question("I want to apply for a job", ["job","apply","application","work","money","employee", "manager", "employer"], true, ["chatterName", "chatterAge"], true,["chatterEmail"],"Thankyou so much! If you provide your email we will get back to you as soon as possible","apply")]
 //controll flow of chat
 var currentQuestion = 'null';//current user question
+var currentUser;
 //question list
 var fallowIndex = 0
 var prevIndex = 0
@@ -155,37 +156,53 @@ function chatTyping(){
       }
   }
   for (let i = 0; i < possibleQuestions.length; i++) {
-    optionshtml += '<button type="button" data-text = "' + possibleQuestions[i].text + '" name="button" onclick="questionClick(this)" class = "option">'+possibleQuestions[i].text+'</button>';
+    optionshtml += '<button type="button" data-type = "optionButton" data-text = "' + possibleQuestions[i].text + '" name="button" onclick="questionClick(this)" class = "option">'+possibleQuestions[i].text+'</button>';
   }
   document.getElementById("options").innerHTML = optionshtml;
 }
 }
 
 function questionClick(button){
+  text = button.getAttribute("data-text");
+  buttonType = button.getAttribute("data-type");
+  if(buttonType == 'optionButton'){
+    for(let i = 0; i < questionList.length; i++){
+      if(text == questionList[i].text){
+        currentQuestion = questionList[i];
+        break;
+      }
+    }
+    document.getElementById("options").innerHTML = '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>'
+  }
+  else if((buttonType == 'send') &&(currentUser != null)){
+    input = document.getElementById('questionBox');
+    textBox = input.value;
+    currentUser.response = textBox;
+    currentUser.hasResponse = true;
+    document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + textBox + '</p></div>'
+    $('#options').animate({scrollBottom: document.body.scrollHeight},"fast");
+  }
   document.getElementById("questionBox").value = '';
   document.getElementById("questionBox").focus();
   document.getElementById("questionBox").select();
-  text = button.getAttribute("data-text");
-  for(let i = 0; i < questionList.length; i++){
-    if(text == questionList[i].text){
-      currentQuestion = questionList[i];
-      break;
-    }
-  }
-  document.getElementById("options").innerHTML = '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>'
   if(currentQuestion.hasPrev){
     for (let i = 0; i < currentQuestion.prevQuestionID.length; i++){
       theID = currentQuestion.prevQuestionID[i]
-      for (let j = 0; j < userQuestion.length; j++){
-        if()
+      for (let j = 0; j < userQuestions.length; j++){
+        if((currentQuestion.prevQuestionID[i] == userQuestions[j].id) && userQuestions[j].hasResponse == false){
+          currentUser = userQuestions[j];
+          document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentUser.text + '</p></div>';
+          $('#options').animate({scrollBottom: document.body.scrollHeight},"fast");
+          return;
+        }
       }
     }
   }
-  else if(currentQuestion.hasFallow){
-    document.getElementById("options").innerHTML = '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>' + '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentQuestion.response + '</p></div>';
-  }
-  else{
-    document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentQuestion.response + '</p></div>';
+  document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentQuestion.response + '</p></div>';
+  $('#options').animate({scrollBottom: document.body.scrollHeight},"fast");
+  if(currentQuestion.hasFallow){
+    document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>' + '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentQuestion.response + '</p></div>';
+    $('#options').animate({scrollBottom: document.body.scrollHeight},"fast");
   }
   currentQuestion = 'null';
   //current question anaswer = interiror of answer box if there is a current question

@@ -79,7 +79,9 @@ html {
   background-color: red;
 }
 #options{
-  margin-top: 20%;
+  overflow: hidden;
+  height: 80%;
+  Overflow-y: scroll;
 }
 body {
   background: #368dda;
