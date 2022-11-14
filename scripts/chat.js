@@ -225,4 +225,10 @@ function questionClick(button){
   currentQuestion = 'null';
   //current question anaswer = interiror of answer box if there is a current question
 }
+eventTarget.addEventListener("keydown", (event) => {
+  if (event.isComposing || event.keyCode === 13) {
+    questionClick(ocument.getElementById("send"))
+  }
+  // do something
+});
 //multiple answer on click set answer of current question to the block set current question to none
