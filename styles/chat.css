@@ -27,7 +27,6 @@ html {
   bottom: 150px;
   right: 120px;
   z-index: 10000;
-  border-radius: 30px;
   text-align: center;
   display: none;
 }
@@ -79,8 +78,9 @@ html {
   background-color: red;
 }
 #options{
+  background-color: #B6A0E2;
   overflow: hidden;
-  height: 80%;
+  height: 90%;
   Overflow-y: scroll;
 }
 body {

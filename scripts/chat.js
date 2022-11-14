@@ -165,6 +165,9 @@ function chatTyping(){
 function questionClick(button){
   text = button.getAttribute("data-text");
   buttonType = button.getAttribute("data-type");
+  if(currentQuestion == "null" && buttonType == 'send'){
+    return;
+  }
   if(buttonType == 'optionButton'){
     for(let i = 0; i < questionList.length; i++){
       if(text == questionList[i].text){
@@ -173,14 +176,17 @@ function questionClick(button){
       }
     }
     document.getElementById("options").innerHTML = '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>'
+    var messageBody = document.querySelector('#options');
+    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
   }
-  else if((buttonType == 'send') &&(currentUser != null)){
+  else if((buttonType == 'send') && (currentUser != null) && (currentQuestion != "null")){
     input = document.getElementById('questionBox');
     textBox = input.value;
     currentUser.response = textBox;
     currentUser.hasResponse = true;
     document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + textBox + '</p></div>'
-    $('#options').animate({scrollBottom: document.body.scrollHeight},"fast");
+    var messageBody = document.querySelector('#options');
+    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
   }
   document.getElementById("questionBox").value = '';
   document.getElementById("questionBox").focus();
@@ -192,17 +198,29 @@ function questionClick(button){
         if((currentQuestion.prevQuestionID[i] == userQuestions[j].id) && userQuestions[j].hasResponse == false){
           currentUser = userQuestions[j];
           document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentUser.text + '</p></div>';
-          $('#options').animate({scrollBottom: document.body.scrollHeight},"fast");
+          var messageBody = document.querySelector('#options');
+          messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
           return;
         }
       }
     }
   }
   document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentQuestion.response + '</p></div>';
-  $('#options').animate({scrollBottom: document.body.scrollHeight},"fast");
+  var messageBody = document.querySelector('#options');
+  messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
   if(currentQuestion.hasFallow){
-    document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>' + '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentQuestion.response + '</p></div>';
-    $('#options').animate({scrollBottom: document.body.scrollHeight},"fast");
+    for (let i = 0; i < currentQuestion.fallowQuestionID.length; i++){
+      theID = currentQuestion.fallowQuestionID[i]
+      for (let j = 0; j < userQuestions.length; j++){
+        if((currentQuestion.fallowQuestionID[i] == userQuestions[j].id) && userQuestions[j].hasResponse == false){
+          currentUser = userQuestions[j];
+          document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentUser.text + '</p></div>';
+          var messageBody = document.querySelector('#options');
+          messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+          return;
+        }
+      }
+    }
   }
   currentQuestion = 'null';
   //current question anaswer = interiror of answer box if there is a current question
