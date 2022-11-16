@@ -225,9 +225,9 @@ function questionClick(button){
   currentQuestion = 'null';
   //current question anaswer = interiror of answer box if there is a current question
 }
-eventTarget.addEventListener("keydown", (event) => {
-  if (event.isComposing || event.keyCode === 13) {
-    questionClick(ocument.getElementById("send"))
+document.addEventListener("keydown", (event) => {
+  if (event.isComposing || event.keyCode == 13) {
+    questionClick(document.getElementById("send"))
   }
   // do something
 });
