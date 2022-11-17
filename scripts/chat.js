@@ -117,6 +117,13 @@ var prevIndex = 0
 //func on question click click function for class
 function chatTyping(){
   if (currentQuestion == 'null'){
+    if(document.getElementsByClassName('optionContainter').length > 0);{
+      console.log(document.getElementsByClassName('optionContainter')[document.getElementsByClassName('optionContainter').length-1].classList);
+
+    }
+  if(document.getElementsByClassName('optionContainter').length < 1 || !(document.getElementsByClassName('optionContainter')[document.getElementsByClassName('optionContainter').length-1].classList == ['optionContainter','active'])){
+  document.getElementById("options").innerHTML += "<div class = 'optionContainter active'></div>";
+  }
   let keyword = "";
   optionshtml = "";
   var possibleQuestions = [];
@@ -158,7 +165,7 @@ function chatTyping(){
   for (let i = 0; i < possibleQuestions.length; i++) {
     optionshtml += '<button type="button" data-type = "optionButton" data-text = "' + possibleQuestions[i].text + '" name="button" onclick="questionClick(this)" class = "option">'+possibleQuestions[i].text+'</button>';
   }
-  document.getElementById("options").innerHTML = optionshtml;
+  document.getElementsByClassName('optionContainter')[document.getElementsByClassName('optionContainter').length-1].innerHTML = optionshtml;
 }
 }
 
@@ -168,7 +175,8 @@ function questionClick(button){
   if(currentQuestion == "null" && buttonType == 'send'){
     return;
   }
-  if(buttonType == 'optionButton'){
+  if(buttonType == 'optionButton' && button.parentElement.classList.includes('active')){
+    button.parentElement.classList.remove("active");
     for(let i = 0; i < questionList.length; i++){
       if(text == questionList[i].text){
         currentQuestion = questionList[i];
