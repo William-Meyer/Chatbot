@@ -116,13 +116,10 @@ var fallowIndex = 0
 var prevIndex = 0
 //func on question click click function for class
 function chatTyping(){
+  optionshtml = "";
   if (currentQuestion == 'null'){
-    if(document.getElementsByClassName('optionContainter').length > 0);{
-      console.log(document.getElementsByClassName('optionContainter')[document.getElementsByClassName('optionContainter').length-1].classList);
-
-    }
-  if(document.getElementsByClassName('optionContainter').length < 1 || !(document.getElementsByClassName('optionContainter')[document.getElementsByClassName('optionContainter').length-1].classList == ['optionContainter','active'])){
-  document.getElementById("options").innerHTML += "<div class = 'optionContainter active'></div>";
+  if(!(document.getElementById("options").contains(document.getElementById("optionContainter")))){
+  document.getElementById("options").innerHTML += "<div id = 'optionContainter'></div>";
   }
   let keyword = "";
   optionshtml = "";
@@ -142,14 +139,12 @@ function chatTyping(){
     theWord = theWord.filter(function filterPunc(word){
       index = word.length -1
       theBool = (word[index] != '?') && (word[index] != '.')
-      console.log(word[index] + '---' + theBool);
       return theBool;
     })
     for(let i = 0; i < theWord.length; i++){
       keyword += theWord[i];
     }
   }
-  console.log(keyword);
   if(words.length > 1){
       keywordLength = keyword.length;
       for (let i = 0; i < questionList.length; i++) {
@@ -165,7 +160,7 @@ function chatTyping(){
   for (let i = 0; i < possibleQuestions.length; i++) {
     optionshtml += '<button type="button" data-type = "optionButton" data-text = "' + possibleQuestions[i].text + '" name="button" onclick="questionClick(this)" class = "option">'+possibleQuestions[i].text+'</button>';
   }
-  document.getElementsByClassName('optionContainter')[document.getElementsByClassName('optionContainter').length-1].innerHTML = optionshtml;
+  document.getElementById("optionContainter").innerHTML = optionshtml;
 }
 }
 
@@ -175,15 +170,15 @@ function questionClick(button){
   if(currentQuestion == "null" && buttonType == 'send'){
     return;
   }
-  if(buttonType == 'optionButton' && button.parentElement.classList.includes('active')){
-    button.parentElement.classList.remove("active");
+  if(buttonType == 'optionButton'){
+    document.getElementById("optionContainter").remove();
     for(let i = 0; i < questionList.length; i++){
       if(text == questionList[i].text){
         currentQuestion = questionList[i];
         break;
       }
     }
-    document.getElementById("options").innerHTML = '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>'
+    document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + currentQuestion.text + '</p></div>'
     var messageBody = document.querySelector('#options');
     messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
   }
