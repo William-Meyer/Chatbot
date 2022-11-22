@@ -58,6 +58,7 @@ class userQuestion{
     this.prevQuestionID = prevQuestionID;
     this.response = "";
     this.hasResponse = false;
+    this.choices = choices;
   }
   getID(){
     return id;
@@ -103,11 +104,12 @@ function toggleChatWindow(){
 //function on start use json to create questions and add them to teh list
 var userQuestions = [
 new userQuestion("What is your name?","chatterName", false, "", false, "" ),
-new userQuestion("What is your age?","chatterAge", false, "", false, "" ),
+new userQuestion("What is your age?","chatterAge", true,["18","19","20"], false, "" ),
 new userQuestion("What is your email?","chatterEmail", false, "", false, "" )];
 var questionList = [new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),
 new question("Who is the CEO?", ["ceo","boss","creator","meyer", "name"], false, [],false,[],"CEO is William Meyer, assistant TO the CEO is Caden Watts","ceo"),
-new question("I want to apply for a job", ["job","apply","application","work","money","employee", "manager", "employer"], true, ["chatterName", "chatterAge"], true,["chatterEmail"],"Thankyou so much! If you provide your email we will get back to you as soon as possible","apply")]
+new question("I want to apply for a job", ["job","apply","application","work","money","employee", "manager", "employer"], true, ["chatterName", "chatterAge"], true,["chatterEmail"],"Thankyou so much! If you provide your email we will get back to you as soon as possible","apply")
+]
 //controll flow of chat
 var currentQuestion = 'null';//current user question
 var currentUser;
@@ -161,6 +163,8 @@ function chatTyping(){
     optionshtml += '<button type="button" data-type = "optionButton" data-text = "' + possibleQuestions[i].text + '" name="button" onclick="questionClick(this)" class = "option">'+possibleQuestions[i].text+'</button>';
   }
   document.getElementById("optionContainter").innerHTML = optionshtml;
+  var messageBody = document.querySelector('#options');
+  messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
 }
 }
 
@@ -191,6 +195,14 @@ function questionClick(button){
     var messageBody = document.querySelector('#options');
     messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
   }
+  else if((buttonType == 'multipleAnswer') && (currentUser != null) && (currentQuestion != "null")){
+    currentUser.response = button.innerHTML;
+    currentUser.hasResponse = true;
+    document.getElementById("optionContainter").remove();
+    document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-right bubbleRight"> <p>' + button.innerHTML + '</p></div>';
+    var messageBody = document.querySelector('#options');
+    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+  }
   document.getElementById("questionBox").value = '';
   document.getElementById("questionBox").focus();
   document.getElementById("questionBox").select();
@@ -203,6 +215,15 @@ function questionClick(button){
           document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentUser.text + '</p></div>';
           var messageBody = document.querySelector('#options');
           messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+          if(currentUser.isChoice){
+            newhtml = "";
+            for(let z = 0;z<currentUser.choices.length; z++){
+              newhtml += '<button type="button" data-type = "multipleAnswer" data-text = "' + currentUser.choices[z] + '" name="button" onclick="questionClick(this)" class = "option">'+currentUser.choices[z]+'</button>';
+            }
+            document.getElementById("options").innerHTML += "<div id = 'optionContainter'>" + newhtml + "</div>";
+            var messageBody = document.querySelector('#options');
+            messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+          }
           return;
         }
       }
