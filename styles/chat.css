@@ -1,12 +1,20 @@
 html {
   scroll-behavior: smooth;
 }
+#imgggg{
+  width: 40px;
+  height: auto;
+}
 #topChat{
+border-bottom-color:black;
+border-bottom-style: solid;
+background-color: #f0f2f4;
 height: 80px;
 display: grid;
 grid-template-columns: 90px auto;
 }
 #topChat h1{
+margin-left: -70px;
 height: 80px;
 font-family: arial;
 margin-top: 20px;
@@ -29,7 +37,7 @@ position: inline;
   z-index: 10000; /* Make sure it does not overlap */
   border: none; /* Remove borders */
   outline: none; /* Remove outline */
-  background-color: #3E3E3E; /* Set a background color */
+  background-color: white; /* Set a background color */
   color: white; /* Text color */
   cursor: pointer; /* Add a mouse pointer on hover */
   height: 60px;
@@ -51,7 +59,7 @@ position: inline;
 }
 #questionBox{
   position:absolute;
-  bottom:10px;
+  bottom:-70px;
   height: 40px;
   width: 70%;
   font-size: 18px;
@@ -61,7 +69,7 @@ position: inline;
 }
 #send{
   position:absolute;
-  bottom:12px;
+  bottom:-68px;
   right: 20px;
   width: 40px;
   height: 40px;
@@ -94,10 +102,10 @@ position: inline;
   font-size: 20px;
 }
 .option:hover{
-  background-color: red;
+  background-color: #AEAEAE;
 }
 #options{
-  background-color: #B6A0E2;
+  background-color: #93669D;
   overflow: hidden;
   height: 90%;
   Overflow-y: scroll;
@@ -105,9 +113,14 @@ position: inline;
 body {
   background: #368dda;
 }
-
+button{
+  border-style: none;
+}
 .bubble p{
-  color: red;
+  color: #303030;
+}
+input{
+  border-style: none;
 }
 .bubble {
   margin-top: 40px;
