@@ -130,7 +130,6 @@ function chatTyping(){
   input = document.getElementById('questionBox');
   text = input.value.toLowerCase();
   let words = text.split(" ");
-  const ages = [32, 33, 16, 40];
   words = words.filter(function checkSpaces(words) {
     return  words != "";
   })

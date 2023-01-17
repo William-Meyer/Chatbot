@@ -1,6 +1,9 @@
 html {
   scroll-behavior: smooth;
 }
+#chatWindow{
+  border-radius: 10px;
+}
 #topChat{
 height: 80px;
 display: grid;
@@ -41,7 +44,7 @@ position: inline;
 #chatWindow{
   position: fixed;
   width: 400px;
-  height: 600px;
+  height: 650px;
   background-color: #B6D0E2;
   bottom: 150px;
   right: 120px;
@@ -99,7 +102,7 @@ position: inline;
 #options{
   background-color: #B6A0E2;
   overflow: hidden;
-  height: 90%;
+  height: 500px;
   Overflow-y: scroll;
 }
 body {
