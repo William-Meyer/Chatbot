@@ -11,22 +11,24 @@ class question {
     this.response = response;
   }
   getResponse(){
-    if(response.includes('~')){
+    if(this.response.includes('~')){
+
       // find id
-      newResponse = response.split('~')
-      finalList = [];
+      let newResponse = this.response.split('~')
+      let finalList = "";
       for(let i = 0; i<newResponse.length; i++){
         if(i != 0 && i%2 != 0){
-          finalList.push(findUserQuestionByID(finalList[i]).response)
+          console.log(newResponse[i]);
+          finalList = finalList+(findUserQuestionByID(newResponse[i]).response)
         }
         else{
-          finalList.push(newResponse[i])
+          finalList = finalList + newResponse[i];
         }
       }
-      return finalList.join()
+      return finalList;
     }
     else{
-      return response
+      return this.response
     }
   }
   getTags(){
@@ -121,9 +123,10 @@ function toggleChatWindow(){
   stop();
 }
 function findUserQuestionByID(id){
-  for(const el in userQuestion){
-    if (el.id == id){
-      return el;
+  console.log(userQuestions.length);
+  for(let i = 0; i<userQuestions.length; i++){
+    if(userQuestions[i].id == id){
+      return userQuestions[i];
     }
   }
 }
@@ -255,7 +258,7 @@ function questionClick(button){
       }
     }
   }
-  document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentQuestion.response + '</p></div>';
+  document.getElementById("options").innerHTML += '<div class="bubble bubble-bottom-left bubbleLeft"> <p>' + currentQuestion.getResponse() + '</p></div>';
   var messageBody = document.querySelector('#options');
   messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
   if(currentQuestion.hasFallow){

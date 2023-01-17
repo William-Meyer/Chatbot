@@ -1,14 +1,9 @@
 html {
   scroll-behavior: smooth;
 }
-<<<<<<< HEAD
-#chatWindow{
-  border-radius: 10px;
-=======
 #imgggg{
   width: 40px;
   height: auto;
->>>>>>> 21665d64298a0648e6d850eb65fc1f74ec7bccea
 }
 #topChat{
 border-bottom-color:black;
