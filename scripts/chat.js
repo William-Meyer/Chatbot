@@ -10,6 +10,25 @@ class question {
     this.fallowQuestionID = fallowQuestionID;
     this.response = response;
   }
+  getResponse(){
+    if(response.includes('~')){
+      // find id
+      newResponse = response.split('~')
+      finalList = [];
+      for(let i = 0; i<newResponse.length; i++){
+        if(i != 0 && i%2 != 0){
+          finalList.push(findUserQuestionByID(finalList[i]).response)
+        }
+        else{
+          finalList.push(newResponse[i])
+        }
+      }
+      return finalList.join()
+    }
+    else{
+      return response
+    }
+  }
   getTags(){
     theList = []
     for(let i = 0; i < tags.length; i++){
@@ -101,6 +120,14 @@ function toggleChatWindow(){
   $( "#chatWindow" ).slideToggle();
   stop();
 }
+function findUserQuestionByID(id){
+  for(const el in userQuestion){
+    if (el.id == id){
+      return el;
+    }
+  }
+}
+
 //function on start use json to create questions and add them to teh list
 var userQuestions = [
 new userQuestion("What is your name?","chatterName", false, "", false, "" ),
@@ -108,7 +135,7 @@ new userQuestion("What is your age?","chatterAge", true,["18","19","20"], false,
 new userQuestion("What is your email?","chatterEmail", false, "", false, "" )];
 var questionList = [new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),
 new question("Who is the CEO?", ["ceo","boss","creator","meyer", "name"], false, [],false,[],"CEO is William Meyer, assistant TO the CEO is Caden Watts","ceo"),
-new question("I want to apply for a job", ["job","apply","application","work","money","employee", "manager", "employer"], true, ["chatterName", "chatterAge"], true,["chatterEmail"],"Thankyou so much! If you provide your email we will get back to you as soon as possible","apply")
+new question("I want to apply for a job", ["job","apply","application","work","money","employee", "manager", "employer"], true, ["chatterName", "chatterAge"], true,["chatterEmail"],"Thank you so much ~chatterName~! If you provide your email we will get back to you as soon as possible","apply")
 ]
 //controll flow of chat
 var currentQuestion = 'null';//current user question

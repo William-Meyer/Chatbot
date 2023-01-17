@@ -1,4 +1,7 @@
+
+
 body{
+  background-color: white;
   overflow-x: hidden;
     position: relative;
 background: grey;
@@ -43,14 +46,12 @@ padding: 0;
   color: white;
   font-size: 90px;
   font-family: sans-serif;
-  background:#0A0A0A80;
   width: 80%;
   border-radius: 20px;
   margin: auto;
   margin-bottom: 50px;
 }
 #mission{
-  background:#0A0A0A80;
   border-radius: 20px;
   margin-top: 100px;
   margin-left: auto;
