@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script  src = "jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src = email.js></script>
+
+  </head>
+  <body>
+    <button onclick="email()" type="button" name="button">Click To Send Email</button>
+    <?php
+       // data sent in header are in JSON format
+       header('Content-Type: application/json');
+       // takes the value from variables and Post the data
+       $name = $_POST['message'];
+       $to = "buckeyewill2004@icloud.com";
+       $subject = "Contact Us";
+       // Email Template
+       $message = "Name : ". $name ." ";
+
+       $header = "Test";
+       $retval = mail ($to,$subject,$message,$header);
+       // message Notification
+       if( $retval == true ) {
+          echo json_encode(array(
+             'success'=> true,
+             'message' => 'Message sent successfully'
+          ));
+       }else {
+          echo json_encode(array(
+             'error'=> true,
+             'message' => 'Error sending message'
+          ));
+       }
+    ?>
+  </body>
+</html>
