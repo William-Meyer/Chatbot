@@ -37,13 +37,20 @@
     <button onclick="toggleChatWindow()" id="chatButton" title="Go to top"> <img id = "imgggg" src="imgs/bubble.png" alt=""> </button>
     <div id="chatWindow">
       <div id="topChat">
-        <img src="imgs/user.png" alt="pfp">
-        <h1>CHATBOT</h1>
+        <img id ="pfp" src="imgs/user.png" alt="pfp">
+        <div id="userInfo">
+          <h1 id = "user">CHATBOT</h1>
+          <p id="status">Online</p>
+        </div>
+        <h1 id = 'X'>X</h1>
       </div>
         <div id="options">
         </div>
-       <input type="text" id="questionBox" onkeyup="chatTyping()" placeholder="Ask a question.">
-       <button id = "send" type="button" name="button" data-type = "send" onclick="questionClick(this)"> <img id = "sendImg" src="imgs/airplane.png" alt="send"> </button>
+        <div id="bottomChat">
+          <input type="text" id="questionBox" onkeyup="chatTyping()" placeholder="Ask a question.">
+          <button id = "send" type="button" name="button" data-type = "send" onclick="questionClick(this)"> <img id = "sendImg" src="imgs/airplane.png" alt="send"> </button>
+        </div>
+        <p id ="note">Powered By Next Gen Tech Cong. LLC</p>
     </div>
 <div class="container">
 <div class="content">
