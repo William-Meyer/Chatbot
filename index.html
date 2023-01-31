@@ -37,12 +37,13 @@
     <button onclick="toggleChatWindow()" id="chatButton" title="Go to top"> <img id = "imgggg" src="imgs/bubble.png" alt=""> </button>
     <div id="chatWindow">
       <div id="topChat">
-        <img id ="pfp" src="imgs/user.png" alt="pfp">
-        <div id="userInfo">
+        <img class="topEl" id ="pfp" src="imgs/user.png" alt="pfp">
+        <div class="topEl" id="userInfo">
           <h1 id = "user">CHATBOT</h1>
           <p id="status">Online</p>
         </div>
-        <h1 id = 'X'>X</h1>
+        <button onclick="toggleChatWindow()" class="topEl" type="button" name="button" id="X">X</button>
+
       </div>
         <div id="options">
         </div>
