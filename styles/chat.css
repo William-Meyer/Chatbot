@@ -8,13 +8,21 @@ html {
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
   #options{
-    scrollbar-width: auto;
-    scrollbar-color: #8f54a0 #ffffff;
+    scrollbar-width: 7px;
+    scrollbar-color: #7e7e7e transparent;
+  }
+  @-moz-document url-prefix(){
+    #options{
+      scrollbar-width: 5px;
+    }
+  }
+  #options::scrollbar-thumb{
+    border-radius: 10px;
   }
 
   /* Chrome, Edge, and Safari */
   #options::-webkit-scrollbar {
-    width: 10px;
+    width: 7px;
   }
 
   #options::-webkit-scrollbar-track {
