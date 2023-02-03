@@ -135,9 +135,12 @@ function findUserQuestionByID(id){
 var userQuestions = [
 new userQuestion("What is your name?","chatterName", false, "", false, "" ),
 new userQuestion("What is your age?","chatterAge", true,["18","19","20"], false, "" ),
-new userQuestion("What is your email?","chatterEmail", false, "", false, "" )];
-var questionList = [new question("what is the name of this site?", ["name","called","named","site"], false, [],false,[],"NEXT GEN TECH CONGLOMERATE is the name of this site.  CEO is William Meyer, assistant TO the CEO is Caden Watts","name"),
-new question("Who is the CEO?", ["ceo","boss","creator","meyer", "name"], false, [],false,[],"CEO is William Meyer, assistant TO the CEO is Caden Watts","ceo"),
+new userQuestion("What is your email?","chatterEmail", false, "", false, "" ),
+new userQuestion("What type of car do you want","bodyType", true,['sadan','suv','truck','van','electric'],false,""),
+new userQuestion("What color car do you want","carColor",false,[],false,[])
+];
+var questionList = [
+new question("I am interested in buying a car",['car','buy','suv','vehicle','purchase','cost'],true,['chatterName','bodyType','carColor'],false,[],"Thank you so much ~chatterName~, we look into finding a ~carColor~ ~bodyType~. Feel free to ask more questions!","buyCar"),
 new question("I want to apply for a job", ["job","apply","application","work","money","employee", "manager", "employer"], true, ["chatterName", "chatterAge"], true,["chatterEmail"],"Thank you so much ~chatterName~! If you provide your email we will get back to you as soon as possible","apply")
 ]
 //controll flow of chat
